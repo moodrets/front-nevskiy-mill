@@ -1,0 +1,114 @@
+.app-form-control {
+    @apply
+        outline-none
+        w-full
+        border
+        rounded-[24px]
+        py-1.5
+        px-5
+        text-[16px]
+        font-medium
+        transition-all
+        duration-[.25s]
+        border-dark
+        text-black
+        focus-visible:ring-1
+        focus-visible:border-accent
+        focus-visible:ring-accent
+        placeholder:text-neutral
+    ;
+}
+
+.app-checkmark {
+    @apply 
+        flex-none
+        w-4
+        h-4
+        relative
+    ;
+
+    .svg-icon {
+        @apply
+            cursor-pointer
+            text-accent
+            w-full
+            h-full
+            pointer-events-none
+            flex
+            items-center
+            justify-center
+            duration-300
+            border
+            outline-none
+            border-black
+        ;
+
+        svg {
+            @apply 
+                w-[50%]
+                h-[50%]
+                transition-all
+                scale-0
+                opacity-0
+            ;
+        }
+    }
+
+    input {
+        @apply 
+            cursor-pointer
+            outline-none
+            w-full
+            h-full
+            p-0
+            m-0
+            absolute
+            z-[5]
+            left-0
+            right-0
+            top-0
+            bottom-0
+            opacity-0
+        ;
+
+        &:checked ~ .svg-icon svg {
+            @apply 
+                scale-100 
+                opacity-100
+                pointer-events-none
+                cursor-crosshair
+            ;
+        }
+
+        &:checked ~ .svg-icon,
+        &:focus-visible ~ .svg-icon {
+            @apply border-accent ring-1 ring-accent;
+        }
+
+        &:disabled {
+            @apply 
+                pointer-events-none
+            ;
+        }
+
+        &:disabled ~ .svg-icon {
+            @apply 
+                opacity-50 
+                pointer-events-none
+            ;
+        }
+    }
+
+    input[type="radio"] ~ .svg-icon {
+        @apply 
+            rounded-full
+        ;
+
+        svg {
+            @apply 
+                w-2.5
+                h-2.5
+            ;
+        }
+    }
+}

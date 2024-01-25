@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+
+// base
+@import "@/styles/base/fonts";
+@import "@/styles/base/defaults";
+@import "@/styles/base/typography";
+
+// elements
+@import "@/styles/elements/buttons";
+@import "@/styles/elements/forms";
+@import "@/styles/elements/svg-icon";
+@import "@/styles/elements/logo";
+@import "@/styles/elements/spy-blocks-menu";
+
+@tailwind utilities;

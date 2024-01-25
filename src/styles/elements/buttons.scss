@@ -1,0 +1,34 @@
+.app-button {
+    @apply
+        select-none
+        flex-none
+        inline-flex
+        items-center
+        justify-center
+        outline-none
+        no-underline
+        hover:no-underline
+        text-[16px]
+        leading-[1.13]
+        font-semibold
+        tracking-[-0.16px]
+        py-2.5
+        px-5
+        rounded-[60px]
+        bg-transparent
+        border
+        border-transparent
+        transition-all
+        duration-100
+        focus-visible:scale-[1.05]
+        active:scale-[1.03]
+    ;
+
+    &--dark {
+        @apply
+            text-white
+            bg-dark
+            hover:bg-opacity-90
+        ;
+    }
+}

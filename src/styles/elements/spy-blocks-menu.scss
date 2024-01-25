@@ -1,0 +1,56 @@
+.spy-block-menu-top {
+    @apply
+        text-[14px]
+        flex
+        items-center 
+        gap-8
+        xl:gap-10
+    ;
+    
+    a {
+        @apply
+            block 
+            transition-all 
+            font-medium
+            duration-[.25s]
+            [&.is-active-block]:scale-[1.3]
+            [&.is-active-block]:font-bold
+        ;
+
+        &:not(.is-active-block):hover {
+            @apply 
+                scale-[1.1]
+            ;
+        }
+    }
+}
+
+.spy-block-menu-mobile {
+    @apply 
+        flex
+        flex-col
+        gap-2
+    ;
+
+    li {
+        @apply overflow-hidden;
+    }
+
+    a {
+        @apply
+            block
+            transition-all 
+            font-medium
+            duration-[.25s]
+            origin-left
+            [&.is-active-block]:scale-[1.3]
+            [&.is-active-block]:font-bold
+        ;
+
+        &:not(.is-active-block):hover {
+            @apply 
+                scale-[1.01]
+            ;
+        }
+    }
+}

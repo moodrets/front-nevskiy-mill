@@ -1,0 +1,1 @@
+export const routerPath = import.meta.env.MODE === 'development' ? '/' : '/front-nevskiy-mill/'
