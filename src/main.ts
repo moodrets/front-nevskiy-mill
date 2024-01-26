@@ -14,10 +14,8 @@ import CallbackForm from '@/components/forms/CallbackForm.vue'
 import SpyBlocksMenu from '@/components/common/SpyBlocksMenu.vue'
 import MobileMenuTrigger from '@/components/common/MobileMenuTrigger.vue'
 import Offcanvas from '@/components/common/Offcanvas.vue'
-import AppBlock from '@/components/common/AppBlock.vue'
 
 createApp(App)
-    .component('AppBlock', AppBlock)
     .component('Offcanvas', Offcanvas)
     .component('MobileMenuTrigger', MobileMenuTrigger)
     .component('CallbackForm', CallbackForm)

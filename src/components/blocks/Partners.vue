@@ -18,7 +18,7 @@
 
                     <div v-for="(partner, partnerIndex) in 6" :key="partnerIndex">
                         <a href="#" class="block transition-all duration-300 hover:scale-[1.05]">
-                            <img :src="`/partners/partner-${partnerIndex+1}.png`" alt="">
+                            <img :src="`${routerPath}partners/partner-${partnerIndex+1}.png`" alt="">
                         </a>
                     </div>
 
@@ -27,3 +27,7 @@
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+import { routerPath } from '@/routes'
+</script>
