@@ -1,5 +1,7 @@
 import { setActiveItemNavigation } from "@/composables/useAppBlocks";
 
+const tablet = window.matchMedia("(max-width: 768px)").matches
+
 export function initBlocksIntersectionObserver() {
     const blocks = document.querySelectorAll('[data-hash]')
 
@@ -13,7 +15,7 @@ export function initBlocksIntersectionObserver() {
     }, {
         root: null,
         rootMargin: "0px",
-        threshold: .7,
+        threshold: tablet ? .3 : .6,
     });
 
     blocks.forEach(block => {

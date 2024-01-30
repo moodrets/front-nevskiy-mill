@@ -40,7 +40,7 @@ export function setActiveItemNavigation(blockHash: string) {
 class BlockScroller {
     protected prevBlockQueueIndex: number = -1
 
-    protected makeScrollToBlock(elem: Element | HTMLElement | null | undefined, headerHeight: number = 0) {
+    protected makeScrollToBlock(elem: Element | HTMLElement | null | undefined) {
         elem?.scrollIntoView({
             behavior: "smooth", 
             block: "start", 
@@ -50,7 +50,6 @@ class BlockScroller {
     public scrollToBlock(blockHash: string) {
         const appHeader = document.querySelector('.js-app-header')
         const appBlocks = document.querySelectorAll(`[data-hash="${blockHash}"]`)
-        let appHeaderHeight = appHeader?.getBoundingClientRect().height ?? 140
 
         if (appBlocks.length > 1) {
             if (!appBlocks[this.prevBlockQueueIndex + 1]) {

@@ -1,6 +1,6 @@
 <template>
     <div class="centered flex-1 flex flex-col">
-        <div class="flex-1 flex flex-col gap-10 lg:flex-row lg:gap-20">
+        <div class="flex-1 flex flex-col gap-10 lg:flex-row">
             <div class="relative flex flex-col justify-between pb-10 lg:w-1/3 lg:flex-none">
                 <h2 class="block-title mb-10 lg:mb-20">БЛОГ</h2>
                 <TabsTitles
@@ -25,33 +25,35 @@
             </div>
             <div class="lg:flex-1 lg:min-w-0">
                 <div class="lg:h-[70vh] lg:p-1 lg:pr-2 lg:overflow-y-auto">
-                    <TabsBodies name="blog">
-                        <template #recipes>
-                            <div class="space-y-6">
-                                <BlogCard></BlogCard>
-                                <BlogCard></BlogCard>
-                                <BlogCard></BlogCard>
-                                <BlogCard></BlogCard>
-                            </div>
-                        </template>
-                        <template #news>
-                            <div class="space-y-6">
-                                <BlogCard></BlogCard>
-                                <BlogCard></BlogCard>
-                            </div>
-                        </template>
-                        <template #video-recipes>
-                            <div class="space-y-6">
-                                <BlogCard></BlogCard>
-                            </div>
-                        </template>
-                        <template #socials>
-                            <div class="space-y-6">
-                                <BlogCard></BlogCard>
-                                <BlogCard></BlogCard>
-                            </div>
-                        </template>
-                    </TabsBodies>
+                    <TabsView>
+                        <TabsBodies name="blog">
+                            <template #recipes>
+                                <div class="space-y-6">
+                                    <BlogCard></BlogCard>
+                                    <BlogCard></BlogCard>
+                                    <BlogCard></BlogCard>
+                                    <BlogCard></BlogCard>
+                                </div>
+                            </template>
+                            <template #news>
+                                <div class="space-y-6">
+                                    <BlogCard></BlogCard>
+                                    <BlogCard></BlogCard>
+                                </div>
+                            </template>
+                            <template #video-recipes>
+                                <div class="space-y-6">
+                                    <BlogCard></BlogCard>
+                                </div>
+                            </template>
+                            <template #socials>
+                                <div class="space-y-6">
+                                    <BlogCard></BlogCard>
+                                    <BlogCard></BlogCard>
+                                </div>
+                            </template>
+                        </TabsBodies>
+                    </TabsView>
                 </div>
             </div>
         </div>
@@ -59,5 +61,5 @@
 </template>
 
 <script lang="ts" setup>
-import BlogCard from '@/components/blocks/BlockCard.vue'
+import BlogCard from '@/components/blocks/BlogCard.vue'
 </script>

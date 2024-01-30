@@ -1,7 +1,11 @@
 <template>
-    <template v-for="(tab, tabIndex) in tabsStore[name]?.items" :key="tabIndex">
+    <template v-for="(tab, tabIndex) in tabsStore[name]?.items" >
         <Transition name="tabs">
-            <div v-show="tab.key === tabsStore[name]?.activeKey" :data-tab-key="tab.key">
+            <div 
+                v-show="tab.key === tabsStore[name]?.activeKey" 
+                :key="tabIndex"
+                :data-tab-key="tab.key" 
+            >
                 <slot :name="tab.key"></slot>
             </div>
         </Transition>
