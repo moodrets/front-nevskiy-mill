@@ -47,9 +47,9 @@ class BlockScroller {
         })
     }
 
-    public scrollToBlock(blockhash: string) {
+    public scrollToBlock(blockHash: string) {
         const appHeader = document.querySelector('.js-app-header')
-        const appBlocks = document.querySelectorAll(`[data-hash="${blockhash}"]`)
+        const appBlocks = document.querySelectorAll(`[data-hash="${blockHash}"]`)
         let appHeaderHeight = appHeader?.getBoundingClientRect().height ?? 140
 
         if (appBlocks.length > 1) {
@@ -74,7 +74,7 @@ class BlockScroller {
         }
 
         if (appBlocks.length) {
-            window.location.hash = blockhash
+            window.location.hash = blockHash
         }
     }
 }

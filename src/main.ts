@@ -14,12 +14,16 @@ import CallbackForm from '@/components/forms/CallbackForm.vue'
 import SpyBlocksMenu from '@/components/common/SpyBlocksMenu.vue'
 import MobileMenuTrigger from '@/components/common/MobileMenuTrigger.vue'
 import Offcanvas from '@/components/common/Offcanvas.vue'
+import TabsTitles from '@/components/common/TabsTitles.vue'
+import TabsBodies from '@/components/common/TabsBodies.vue'
 
 createApp(App)
+    .component('TabsTitles', TabsTitles)
+    .component('TabsBodies', TabsBodies)
     .component('Offcanvas', Offcanvas)
     .component('MobileMenuTrigger', MobileMenuTrigger)
-    .component('CallbackForm', CallbackForm)
     .component('SpyBlocksMenu', SpyBlocksMenu)
+    .component('CallbackForm', CallbackForm)
     .mount('#app')
 
 document.addEventListener('DOMContentLoaded', () => {

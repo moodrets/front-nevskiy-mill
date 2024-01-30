@@ -22,7 +22,7 @@
                 </div>
                 <div>Я согласен на обработку моих персональных данных</div>
             </label>
-            <button type="submit" class="app-button app-button--dark md:ml-auto">Отправить сообщение</button>
+            <button type="submit" class="app-button py-2.5 app-button--dark md:ml-auto">Отправить сообщение</button>
         </div>
     </form>
 </template>

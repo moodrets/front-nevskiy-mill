@@ -12,7 +12,7 @@
         leading-[1.13]
         font-semibold
         tracking-[-0.16px]
-        py-2.5
+        py-1.5
         px-5
         rounded-[60px]
         bg-transparent
@@ -29,6 +29,17 @@
             text-white
             bg-dark
             hover:bg-opacity-90
+        ;
+    }
+
+    &--light {
+        @apply
+            text-dark
+            ring-1
+            ring-dark
+            bg-white
+            hover:bg-dark
+            hover:text-white
         ;
     }
 }
