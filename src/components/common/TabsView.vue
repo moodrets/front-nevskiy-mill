@@ -4,10 +4,10 @@
             <div class="text-[18px] gap-4 font-bold xl:text-[22px]">{{ articleMoreInfo.title }}</div>
             <button 
                 type="button" 
-                class="app-button app-button--light py-0"
+                class="app-button app-button--light py-0 px-3"
                 v-article-back
             >
-                <div class="block w-14 h-9 svg-icon">
+                <div class="block w-14 h-8 svg-icon">
                     <svg><use :xlink:href="`${routerPath}svg-sprite.svg#arrow-left`"></use></svg>
                 </div>
             </button>

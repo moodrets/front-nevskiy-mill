@@ -1,0 +1,31 @@
+.products-slider {
+    @apply 
+        overflow-visible
+    ;
+
+    .swiper-slide {
+        @apply
+            opacity-0
+            transition-all
+            duration-300
+        ;
+    }
+    
+    .swiper-slide-active {
+        @apply opacity-100;
+    }
+
+    .swiper-slide-next {
+        @apply opacity-50;
+    }
+
+    .slider-prev,
+    .slider-next {
+        &[class*="disabled"] {
+            @apply 
+                opacity-0
+                pointer-events-none
+            ;
+        }
+    }
+}

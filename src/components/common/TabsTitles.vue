@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ITabItem, tabsStore, pushTabsToStore, setActiveTab } from '@/composables/useTabs';
+import { ITabItem, tabsStore, pushTabsToStore, setActiveTab } from '@/composables/useTabs'
 
 const { name, items, activeKey } = defineProps<{
     name: string,

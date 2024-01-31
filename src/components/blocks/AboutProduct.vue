@@ -16,6 +16,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <div class="lg:flex-1 lg:min-w-0">

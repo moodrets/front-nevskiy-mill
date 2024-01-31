@@ -1,6 +1,6 @@
 <template>
-    <article class="flex flex-col gap-4 md:flex-row lg:flex-col xl:flex-row md:gap-8">
-        <div class="md:w-1/2 md:flex-none">
+    <article class="flex flex-col gap-4 md:flex-row xl:gap-8">
+        <div class="md:w-1/2 md:flex-none lg:w-2/5 xl:w-1/2">
             <img class="rounded-[24px]" :src="`${routerPath}img/blog-pic.jpg`" alt="">
         </div>
         <div class="md:flex-1 md:min-w-0">
