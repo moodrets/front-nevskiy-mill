@@ -1,6 +1,6 @@
 <template>
     <template v-if="articleMoreInfo">
-        <div class="mb-4 flex justify-between items-center">
+        <div class="mb-4 flex gap-4 justify-between items-center">
             <div class="text-[18px] gap-4 font-bold xl:text-[22px]">{{ articleMoreInfo.title }}</div>
             <button 
                 type="button" 

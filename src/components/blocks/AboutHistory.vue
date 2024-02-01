@@ -3,7 +3,7 @@
         <div class="flex-1 flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-20 xl:gap-32">
             <div class="relative h-[inherit] flex flex-col lg:w-1/3 lg:flex-none pb-10">
                 <h2 class="block-title mb-10 lg:mb-20">ИСТОРИЯ</h2>
-                <div class="space-y-6 text-[13px] leading-[1.3]">
+                <div class="space-y-6 text-[14px] leading-[1.4]">
                     <p>
                         В 1907 году в Петербурге была построена первая железобетонная мель-
                         ница. Ее хозяином был зажиточный купец второй гильдии — Д.И.

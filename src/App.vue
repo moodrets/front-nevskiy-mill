@@ -1,28 +1,31 @@
 <template>
     <AppHeader />
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh" data-hash="about">
-        <About />
-    </section>
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh" data-hash="about">
-        <AboutProduct />
-    </section>
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh" data-hash="about">
-        <AboutHistory />
-    </section>
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh overflow-hidden" data-hash="products">
+    <div class="relative z-[0]">
+        <ThreeObjects />
+        <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh" data-hash="about">
+            <About />
+        </section>
+        <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh" data-hash="about">
+            <AboutProduct />
+        </section>
+        <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh" data-hash="about">
+            <AboutHistory />
+        </section>
+    </div>
+    <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh overflow-hidden" data-hash="products">
         <Products />
     </section>
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh" data-hash="partners">
+    <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh" data-hash="partners">
         <Partners />
     </section>
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh" data-hash="blog">
+    <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh" data-hash="blog">
         <Blog />
     </section>
-    <section class="flex flex-col pt-32 pb-10 lg:pt-[200px] lg:pb-[140px] lg:min-h-dvh" data-hash="contacts">
+    <section class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh" data-hash="contacts">
         <Contacts />
     </section>
     <Offcanvas>
-        <SpyBlocksMenu class="spy-block-menu-mobile" />
+        <SpyBlocksMenu class="spy-menu-mobile" />
     </Offcanvas>
 </template>
 

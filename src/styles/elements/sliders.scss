@@ -21,6 +21,11 @@
 
     .slider-prev,
     .slider-next {
+        @apply 
+            transition-all
+            duration-300
+        ;
+
         &[class*="disabled"] {
             @apply 
                 opacity-0

@@ -12,7 +12,7 @@
                             </div>
                             <div class="flex-1 min-w-0">
                                 <div class="font-bold text-[16px]">{{ value.title }}</div>
-                                <div class="text-[12px]">{{ value.text }}</div>
+                                <div class="text-[13px]">{{ value.text }}</div>
                             </div>
                         </div>
                     </div>

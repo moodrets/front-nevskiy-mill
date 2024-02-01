@@ -1,4 +1,5 @@
 import { setActiveItemNavigation } from "@/composables/useAppBlocks";
+import { threeBlockVisible } from "@/composables/useThreeObjects";
 
 const tablet = window.matchMedia("(max-width: 768px)").matches
 
@@ -8,8 +9,10 @@ export function initBlocksIntersectionObserver() {
     const blockObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                const blockHash = (entry.target as HTMLHtmlElement).dataset?.hash
+                let target = entry.target as HTMLElement
+                let blockHash = target.dataset.hash
                 blockHash && setActiveItemNavigation(blockHash)
+                threeBlockVisible.value = blockHash === 'about'
             }
         });
     }, {

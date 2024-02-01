@@ -19,13 +19,17 @@ import CallbackForm from '@/components/forms/CallbackForm.vue'
 import SpyBlocksMenu from '@/components/common/SpyBlocksMenu.vue'
 import MobileMenuTrigger from '@/components/common/MobileMenuTrigger.vue'
 import Offcanvas from '@/components/common/Offcanvas.vue'
+import Modal from '@/components/common/Modal.vue'
 import TabsTitles from '@/components/common/TabsTitles.vue'
 import TabsBodies from '@/components/common/TabsBodies.vue'
 import TabsView from '@/components/common/TabsView.vue'
+import ThreeObjects from '@/components/common/ThreeObjects.vue'
 
 createApp(App)
     .directive('article-back', ArticleBackDirective)
     .directive('article-more', ArticleMoreDirective)
+    .component('Modal', Modal)
+    .component('ThreeObjects', ThreeObjects)
     .component('TabsTitles', TabsTitles)
     .component('TabsBodies', TabsBodies)
     .component('TabsView', TabsView)
@@ -39,3 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initBlocksIntersectionObserver()
     initProductsSlider()
 })
+
+window.onload = () => {
+    // initThreeObjects()
+}

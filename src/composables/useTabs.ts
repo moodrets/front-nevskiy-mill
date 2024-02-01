@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { articleMoreInfo } from '@/composables/useBlogArticle'
 
 export interface ITabItem {
     label: string
@@ -21,4 +22,5 @@ export const pushTabsToStore = (name: string, activeKey: string, items: ITabItem
 
 export const setActiveTab = (name: string, activeKey: string) => {
     tabsStore.value[name].activeKey = activeKey
+    articleMoreInfo.value = null
 }

@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-10 lg:flex-row lg:gap-20 xl:gap-32">
             <div class="lg:w-1/3 lg:flex-none">
                 <h2 class="block-title mb-10 lg:mb-20">КОНТАКТЫ</h2>
-                <p class="text-[13px] leading-[1.3]">
+                <p class="text-[14px] leading-[1.4]">
                     Текст «по всем вопросам ... контакты, отзывы, сотрудничество и тд» В со-
                     ставе хлебцев используем исключительно высококачественное сырье,
                     что позволяет сделать их состав разнообразным и вкусным. Каждая ли-

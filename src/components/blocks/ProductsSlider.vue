@@ -2,7 +2,7 @@
     <div class="products-slider swiper js-products-slider">
         <div class="swiper-wrapper">
             <div
-                class="swiper-slide"
+                class="swiper-slide mr-10"
                 v-for="(slide, slideIndex) in slides"
                 :key="slideIndex"
             >

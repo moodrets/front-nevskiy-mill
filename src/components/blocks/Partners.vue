@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-10 lg:flex-row lg:gap-20 xl:gap-32">
             <div class="relative lg:w-1/3 lg:flex-none pb-10">
                 <h2 class="block-title mb-10 lg:mb-20">ПАРТНЕРЫ</h2>
-                <p class="text-[13px] leading-[1.3]">
+                <p class="text-[14px] leading-[1.4]">
                     Текст о наших партнерах: В составе хлебцев используем исключительно
                     высококачественное сырье, что позволяет сделать их состав разноо-
                     бразным и вкусным. Каждая линейка изготавливается по эксклюзивной

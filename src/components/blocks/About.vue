@@ -4,7 +4,7 @@
             <div class="relative h-[inherit] flex flex-col lg:w-1/3 lg:flex-none pb-10">
                 <h2 class="block-title">НЕВСКАЯ МЕЛЬНИЦА</h2>
                 <div class="font-bold text-[18px] lg:text-[20px] mb-10">ВАШ ЗДОРОВЫЙ ПЕРЕКУС</div>
-                <p class="text-[13px] leading-[1.3] mt-auto">
+                <p class="text-[14px] leading-[1.4] mt-auto">
                     Нам было важно сохранить традиции «Невской мельницы» и создать
                     полностью натуральные продукты, которые были бы доступны каждому.
                     В наших хлебцах много высококачественного сырья, что позволяет сде-
@@ -15,7 +15,6 @@
                 <div class="bg-accent h-[2px] w-1/2 absolute bottom-0 left-0"></div>
             </div>
             <div class="lg:flex-1 lg:min-w-0">
-                
             </div>
         </div>
     </div>
