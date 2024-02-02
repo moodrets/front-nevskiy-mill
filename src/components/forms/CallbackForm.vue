@@ -62,7 +62,8 @@ const form = reactive({
         name: '',
         phone: '',
         email: '',
-        comment: ''
+        comment: '',
+        agreement: true
     }
 })
 
@@ -86,6 +87,7 @@ async function onSubmit() {
         form.fields.phone = '',
         form.fields.email = '',
         form.fields.comment = ''
+        form.fields.agreement = true
 
     } catch(error) {
 

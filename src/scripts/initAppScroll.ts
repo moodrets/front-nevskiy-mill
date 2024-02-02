@@ -19,7 +19,5 @@ export function initBlocksIntersectionObserver() {
         threshold: tablet ? .3 : .6,
     });
 
-    blocks.forEach(block => {
-        blockObserver.observe(block)
-    })
+    blocks.forEach(block => blockObserver.observe(block))
 }
