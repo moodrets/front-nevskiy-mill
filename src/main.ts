@@ -12,6 +12,7 @@ import { createApp } from 'vue'
 // directives
 import ArticleMoreDirective from '@/directives/articleMore'
 import ArticleBackDirective from '@/directives/articleBack'
+import ModalDirective from '@/directives/modal'
 
 // components
 import App from '@/App.vue'
@@ -28,6 +29,7 @@ import ThreeObjects from '@/components/common/ThreeObjects.vue'
 createApp(App)
     .directive('article-back', ArticleBackDirective)
     .directive('article-more', ArticleMoreDirective)
+    .directive('modal', ModalDirective)
     .component('Modal', Modal)
     .component('ThreeObjects', ThreeObjects)
     .component('TabsTitles', TabsTitles)
@@ -43,7 +45,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initBlocksIntersectionObserver()
     initProductsSlider()
 })
-
-window.onload = () => {
-    // initThreeObjects()
-}

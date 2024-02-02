@@ -12,6 +12,13 @@
                     рогенов. Благодаря этому внутри содержится максимальное количество
                     питательных веществ.
                 </p>
+                <div class="my-3">
+                    <button 
+                        v-modal="{name: 'demoModal'}" 
+                        type="button" 
+                        class="app-button app-button--light"
+                    >Модальное окно</button>
+                </div>
                 <div class="mt-10">
                     <a href="tel:88129008080" class="inline-block mb-2 text-[28px] leading-[1.0] font-semibold text-accent">+ 7 812 900 80 80</a>
                     <div class="text-[14px]">
@@ -20,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="lg:flex-1 lg:min-w-0">
+            <div class="flex flex-col lg:flex-1 lg:min-w-0">
                 <CallbackForm></CallbackForm>
             </div>
         </div>

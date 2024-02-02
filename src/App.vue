@@ -27,6 +27,12 @@
     <Offcanvas>
         <SpyBlocksMenu class="spy-menu-mobile" />
     </Offcanvas>
+    <Modal name="demoModal">
+        <h2 class="text-[22px] font-bold mb-6">Demo modal</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ducimus, aperiam blanditiis, earum deleniti quo magnam optio minima dicta hic maxime voluptas voluptatibus alias illum voluptatem repudiandae quasi, ab eligendi.
+        </p>
+    </Modal>
 </template>
 
 <script setup lang="ts">

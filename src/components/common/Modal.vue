@@ -11,8 +11,8 @@
     >
         <div class="app-modal__body">
             <div class="app-modal__close" @click="onClose">
-                <div class="svg-icon md:w-8 md:h-8">
-                    <svg><use xlink:href="#close"></use></svg>
+                <div class="svg-icon lg:w-7 lg:h-7">
+                    <svg><use :xlink:href="`${routerPath}svg-sprite.svg#close`"></use></svg>
                 </div>
             </div>
             <slot
@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 import { modalVisibleState, modalClose } from '@/composables/useModal';
+import { routerPath } from '@/routes';
 import { onUpdated, ref } from 'vue'
 
 const props = withDefaults(
@@ -87,13 +88,12 @@ onUpdated(() => {
     ;
 
     &__close {
-        @apply 
+        @apply
             cursor-pointer
             absolute
             right-4
             top-4
             z-10
-            bg-white
         ;
 
         .svg-icon {
@@ -107,13 +107,12 @@ onUpdated(() => {
             m-auto
             max-w-full
             w-[--app-modal-width]
-            rounded-lg
+            rounded-[24px]
             bg-white
-            p-5
+            p-10
             transition-all
             duration-300
-            translate-y-[40px]
-            lg:p-8
+            -translate-y-[40px]
         ;
     }
 

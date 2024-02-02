@@ -7,9 +7,11 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { threeBlockVisible } from '@/composables/useThreeObjects';
+import { threeBlockVisible, useToggleVisibleThreeBlock } from '@/composables/useThreeObjects';
 import { routerPath } from '@/routes';
 import { ThreeScene } from '@/scripts/threeScene';
+
+useToggleVisibleThreeBlock()
 
 onMounted(() => {
     const mainThreeObject: Record<any, any> = new ThreeScene({
@@ -54,8 +56,10 @@ onMounted(() => {
         }
     } as any);
 
-    (window as any).mainThreeObject = mainThreeObject as any;
-    (window as any).secondaryThreeObject = secondaryThreeObject as any;
+    // @ts-ignore
+    window.mainThreeObject = mainThreeObject;
+    // @ts-ignore
+    window.secondaryThreeObject = secondaryThreeObject;
 })
 </script>
 
@@ -65,7 +69,7 @@ onMounted(() => {
         pointer-events-none
         overflow-hidden
         transition-all
-        duration-300
+        duration-200
         opacity-0
         h-[700px]
         fixed
