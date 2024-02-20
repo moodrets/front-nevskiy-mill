@@ -1,4 +1,4 @@
-const loader = new THREE.GLTFLoader();
+const loader = new THREE.GLTFLoader()
 
 export class ThreeScene {
     scene = null
@@ -12,19 +12,19 @@ export class ThreeScene {
     showGrid = false
     modelInitialRotation = {
         y: 0,
-        x: .45,
-        z: 0
+        x: 0.45,
+        z: 0,
     }
     modelInitialPosition = {
         y: -45,
         x: 0,
-        z: 8
+        z: 8,
     }
     modelMoveAnimationSettings = {
         direction: 'left',
         axis: 'y',
         value: 0.0003,
-        moreValue: [0.5, -0.5]
+        moreValue: [0.5, -0.5],
     }
 
     constructor({
@@ -32,32 +32,41 @@ export class ThreeScene {
         filePath,
         modelInitialRotation,
         modelInitialPosition,
-        modelMoveAnimationSettings
+        modelMoveAnimationSettings,
     }) {
         if (!renderElem) {
             return
         }
         this.renderElem = renderElem
-        this.filePath ??= filePath
+        this.filePath = filePath ?? this.filePath
         this.modelInitialRotation = modelInitialRotation ?? this.modelInitialRotation
         this.modelInitialPosition = modelInitialPosition ?? this.modelInitialPosition
-        this.modelMoveAnimationSettings = modelMoveAnimationSettings ?? this.modelMoveAnimationSettings
+        this.modelMoveAnimationSettings =
+            modelMoveAnimationSettings ?? this.modelMoveAnimationSettings
         this.init()
     }
 
     animateModel() {
         if (this.modelMoveAnimationSettings.direction === 'right') {
-            this.model.rotation[this.modelMoveAnimationSettings.axis] += this.modelMoveAnimationSettings.value
+            this.model.rotation[this.modelMoveAnimationSettings.axis] +=
+                this.modelMoveAnimationSettings.value
 
-            if (this.model.rotation[this.modelMoveAnimationSettings.axis] > this.modelMoveAnimationSettings.moreValue[0]) {
+            if (
+                this.model.rotation[this.modelMoveAnimationSettings.axis] >
+                this.modelMoveAnimationSettings.moreValue[0]
+            ) {
                 this.modelMoveAnimationSettings.direction = 'left'
             }
         }
 
         if (this.modelMoveAnimationSettings.direction === 'left') {
-            this.model.rotation[this.modelMoveAnimationSettings.axis] -= this.modelMoveAnimationSettings.value
+            this.model.rotation[this.modelMoveAnimationSettings.axis] -=
+                this.modelMoveAnimationSettings.value
 
-            if (this.model.rotation[this.modelMoveAnimationSettings.axis] < this.modelMoveAnimationSettings.moreValue[1]) {
+            if (
+                this.model.rotation[this.modelMoveAnimationSettings.axis] <
+                this.modelMoveAnimationSettings.moreValue[1]
+            ) {
                 this.modelMoveAnimationSettings.direction = 'right'
             }
         }
@@ -79,11 +88,11 @@ export class ThreeScene {
         let light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 2)
         light1.position.set(0, 1, 0)
         this.scene.add(light1)
-        
+
         let light2 = new THREE.DirectionalLight(0xffffff, 7)
         light2.position.set(0, 1, 0)
         this.scene.add(light2)
-        
+
         let light3 = new THREE.DirectionalLight(0xffffff, 4)
         light3.position.set(0, -3, 0)
         this.scene.add(light3)
@@ -91,30 +100,35 @@ export class ThreeScene {
 
     setGrid() {
         if (this.showGrid) {
-            const grid = new THREE.GridHelper(100, 100);
-            this.scene.add(grid);
+            const grid = new THREE.GridHelper(100, 100)
+            this.scene.add(grid)
         }
     }
-    
+
     init() {
-        this.scene = new THREE.Scene();
+        this.scene = new THREE.Scene()
         // this.scene.background = new THREE.Color(0xdddddd);
-        this.camera = new THREE.PerspectiveCamera(11, this.renderElem.offsetWidth/this.renderElem.offsetHeight, 1, 5000);
-        
+        this.camera = new THREE.PerspectiveCamera(
+            11,
+            this.renderElem.offsetWidth / this.renderElem.offsetHeight,
+            1,
+            5000
+        )
+
         this.setCamera()
         this.setLights()
-        this.setGrid()        
+        this.setGrid()
 
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
-            alpha: true
+            alpha: true,
         })
 
         this.renderer.setSize(this.renderElem.offsetWidth, this.renderElem.offsetHeight)
         this.renderElem.appendChild(this.renderer.domElement)
 
-        this.controls = new THREE.OrbitControls(this.camera,  this.renderer.domElement);
-        this.controls.enabled = false;
+        this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
+        this.controls.enabled = false
         // this.controls.enableZoom = false;
         // this.controls.enablePan = false;
         // this.controls.enableRotate = false;
@@ -131,10 +145,10 @@ export class ThreeScene {
             this.model.rotation.y = this.modelInitialRotation.y
             this.model.rotation.z = this.modelInitialRotation.z
 
-            this.model.scale.set(.1, .1, .1)
+            this.model.scale.set(0.1, 0.1, 0.1)
             this.scene.add(gltf.scene)
             this.animateScene()
             this.renderElem.classList.add('is-loaded')
-        });
+        })
     }
 }

@@ -1,132 +1,201 @@
 <template>
-    <div class="three-objects-wrapper" :class="{'is-visible': threeBlockVisible}">
-        <div class="three-object three-object--main"></div>
-        <div class="three-object three-object--secondary"></div>
+    <div ref="wrapperRef" class="three-objects-wrapper">
+        <div class="three-object three-object--main">
+            <div class="spinner opacity-50 absolute z-[5] left-1/2 top-1/2 -translate-x-1/2">
+                <div class="svg-icon w-14 h-14 animate-spin">
+                    <svg><use :xlink:href="`${routerPath}svg-sprite.svg#spinner`"></use></svg>
+                </div>
+            </div>
+        </div>
+        <div class="three-object three-object--secondary">
+            <div class="spinner opacity-50 absolute z-[5] left-1/2 top-1/2 -translate-x-1/2">
+                <div class="svg-icon w-14 h-14 animate-spin">
+                    <svg><use :xlink:href="`${routerPath}svg-sprite.svg#spinner`"></use></svg>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { threeBlockVisible, useToggleVisibleThreeBlock } from '@/composables/useThreeObjects';
-import { routerPath } from '@/routes';
-import { ThreeScene } from '@/scripts/threeScene';
+'use strict'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { routerPath } from '@/routes'
+import { ThreeScene } from '@/scripts/threeScene'
 
-useToggleVisibleThreeBlock()
+const wrapperRef = ref<HTMLElement | null>()
+let mainThreeObject: Record<any, any> | null = null
+let secondaryThreeObject: Record<any, any> | null = null
+let aboutBlocks: NodeListOf<Element> | null = null
+let aboutLastBlock: HTMLElement | null = null
+let lastKnownScrollPosition = 0
+let deltaY = 0
+
+// @ts-ignore
+const threeAxisZ = new THREE.Vector3(0, 0, 1).normalize()
+// @ts-ignore
+const threeAxisY = new THREE.Vector3(0, 1, 0).normalize()
+
+function onScrollHandler(event: Event) {
+    let aboutBlockTop = aboutLastBlock?.getBoundingClientRect().top || 0
+    let ticking = false
+    let screenLG = window.matchMedia('(max-width: 1023px)').matches
+    let offsetTop = screenLG ? 130 : 200
+    let moreThan = screenLG ? -400 : 100
+
+    if (!ticking) {
+        window.requestAnimationFrame(function () {
+            deltaY = window.scrollY - lastKnownScrollPosition
+            lastKnownScrollPosition = window.scrollY
+
+            if (window.scrollY > 0) {
+                if (wrapperRef.value) {
+                    if (aboutBlockTop > moreThan) {
+                        wrapperRef.value.removeAttribute('style')
+                    } else {
+                        !wrapperRef.value.hasAttribute('style') &&
+                            wrapperRef.value.setAttribute(
+                                'style',
+                                `position: absolute; top: ${window.scrollY + offsetTop}px`
+                            )
+                    }
+                }
+
+                if (mainThreeObject?.model) {
+                    mainThreeObject.model.rotateOnAxis(threeAxisZ, deltaY * 0.0003)
+                }
+
+                if (secondaryThreeObject?.model) {
+                    secondaryThreeObject.model.rotateOnAxis(threeAxisY, deltaY * 0.00035)
+                }
+            }
+
+            ticking = false
+        })
+        ticking = true
+    }
+}
 
 onMounted(() => {
-    const mainThreeObject: Record<any, any> = new ThreeScene({
+    aboutBlocks = document.querySelectorAll('[data-hash="about"]')
+    aboutLastBlock = aboutBlocks[aboutBlocks.length - 1] as HTMLElement
+
+    mainThreeObject = new ThreeScene({
         filePath: `${routerPath}models/tomato-basil.glb`,
         renderElem: document.querySelector('.three-object--main'),
         modelInitialRotation: {
             y: 0,
-            x: .35,
-            z: 0
+            x: 0.35,
+            z: 0,
         },
         modelInitialPosition: {
             y: -45,
             x: 0,
-            z: 8
+            z: 8,
         },
         modelMoveAnimationSettings: {
             direction: 'right',
             axis: 'y',
             value: 0.0003,
-            moreValue: [0.5, -0.5]
-        }
-    } as any);
+            moreValue: [0.5, -0.5],
+        },
+    } as any)
 
-    const secondaryThreeObject: Record<any, any> = new ThreeScene({
+    secondaryThreeObject = new ThreeScene({
         filePath: `${routerPath}models/apple-carrot.glb`,
         renderElem: document.querySelector('.three-object--secondary'),
         modelInitialRotation: {
             y: 0,
-            x: -.45,
-            z: 0
+            x: -0.45,
+            z: 0,
         },
         modelInitialPosition: {
             y: -27,
             x: 0,
-            z: 30
+            z: 30,
         },
         modelMoveAnimationSettings: {
             direction: 'left',
             axis: 'y',
             value: 0.0003,
-            moreValue: [0.5, -0.5]
-        }
-    } as any);
+            moreValue: [0.5, -0.5],
+        },
+    } as any)
 
     // @ts-ignore
-    window.mainThreeObject = mainThreeObject;
+    window.mainThreeObject = mainThreeObject
     // @ts-ignore
-    window.secondaryThreeObject = secondaryThreeObject;
+    window.secondaryThreeObject = secondaryThreeObject
+
+    window.addEventListener('scroll', onScrollHandler)
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', onScrollHandler)
 })
 </script>
 
 <style lang="scss">
 .three-objects-wrapper {
-    @apply
-        pointer-events-none
+    @apply pointer-events-none
         overflow-hidden
-        transition-all
-        duration-200
-        opacity-0
         h-[700px]
         fixed
         -z-[1]
         top-32
         left-0
         right-0
+        opacity-20
+        lg:opacity-100
+        lg:overflow-visible
         lg:w-[820px]
         lg:top-[200px]
         lg:left-1/2
         lg:right-auto
-        lg:-translate-x-[156px]
-    ;
-
-    &.is-visible {
-        @apply 
-            opacity-10
-            lg:opacity-100
-        ;
-    }
+        lg:-translate-x-[156px];
 }
 
 .three-object {
-    @apply 
-        transition-all
-        duration-500
-        scale-[.8]
-        absolute
-    ;
+    @apply transition-all
+        duration-700
+        absolute;
 
     &--main {
-        @apply 
-            z-[5]
+        @apply z-[5]
             w-[700px]
             h-[700px]
             top-0
             -left-[40%]
             md:left-0
-        ;
+            -translate-y-[30%];
+
+        &.is-loaded {
+            @apply translate-y-0;
+
+            .spinner {
+                @apply opacity-0 
+                    pointer-events-none;
+            }
+        }
     }
 
     &--secondary {
-        @apply 
-            z-[4]
+        @apply z-[4]
             w-[420px]
             h-[420px]
             top-0
             -right-[20%]
             md:right-0
-        ;
-    }
+            translate-y-[30%];
 
-    &.is-loaded {
-        @apply 
-            scale-100
-            opacity-100
-        ;
+        &.is-loaded {
+            @apply translate-y-0;
+
+            .spinner {
+                @apply opacity-0 
+                    pointer-events-none;
+            }
+        }
     }
 }
 </style>
