@@ -4,12 +4,10 @@ html {
 }
 
 body {
-    @apply
-        relative
+    @apply relative
         min-h-[100dvh]
         min-w-[320px]
-        text-[16px]
-    ;
+        text-[16px];
 
     &.is-modal-open,
     &.is-offcanvas-open {
@@ -30,24 +28,18 @@ body {
 }
 
 a:not(a[class]) {
-    @apply
-        text-link
+    @apply text-link
         hover:text-link
-        hover:underline
-    ;
+        hover:underline;
 }
 
 ::selection {
-    @apply 
-        text-white
-        bg-accent
-    ;
+    @apply text-white
+        bg-accent;
 }
 
 ::-webkit-scrollbar {
-    @apply 
-        w-1.5
-    ;
+    @apply w-1.5;
 }
 
 ::-webkit-scrollbar-track {
@@ -55,15 +47,23 @@ a:not(a[class]) {
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply 
-        rounded-sm
+    @apply rounded-sm
         bg-black 
-        bg-opacity-40
-    ;
+        bg-opacity-40;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    @apply 
-        bg-opacity-60
-    ;
+    @apply bg-opacity-60;
+}
+
+.test-glb-canvas {
+    @apply w-full
+        h-full
+        fixed
+        left-0
+        right-0
+        top-0
+        bottom-0
+        bg-dark
+        z-[1000];
 }

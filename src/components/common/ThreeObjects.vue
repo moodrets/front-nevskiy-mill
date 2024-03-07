@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-'use strict'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { routerPath } from '@/routes'
 import { ThreeScene } from '@/scripts/threeScene'
@@ -61,13 +60,8 @@ function onScrollHandler(event: Event) {
                     }
                 }
 
-                if (mainThreeObject?.model) {
-                    mainThreeObject.model.rotateOnAxis(threeAxisZ, deltaY * 0.0003)
-                }
-
-                if (secondaryThreeObject?.model) {
-                    secondaryThreeObject.model.rotateOnAxis(threeAxisY, deltaY * 0.00035)
-                }
+                mainThreeObject?.model.rotateOnAxis(threeAxisY, -deltaY * 0.0003)
+                secondaryThreeObject?.model.rotateOnAxis(threeAxisY, deltaY * 0.00035)
             }
 
             ticking = false
@@ -83,15 +77,25 @@ onMounted(() => {
     mainThreeObject = new ThreeScene({
         filePath: `${routerPath}models/tomato-basil.glb`,
         renderElem: document.querySelector('.three-object--main'),
+        cameraPosition: {
+            x: 0,
+            y: 0,
+            z: 180,
+        },
         modelInitialRotation: {
             y: 0,
-            x: 0.35,
-            z: 0,
+            x: 0.05,
+            z: 0.4,
         },
         modelInitialPosition: {
-            y: -45,
-            x: 0,
-            z: 8,
+            y: -60,
+            x: 30,
+            z: 0,
+        },
+        modelInitialScale: {
+            x: 570,
+            y: 570,
+            z: 570,
         },
         modelMoveAnimationSettings: {
             direction: 'right',
@@ -104,15 +108,25 @@ onMounted(() => {
     secondaryThreeObject = new ThreeScene({
         filePath: `${routerPath}models/apple-carrot.glb`,
         renderElem: document.querySelector('.three-object--secondary'),
+        cameraPosition: {
+            x: 0,
+            y: 0,
+            z: 200,
+        },
         modelInitialRotation: {
             y: 0,
-            x: -0.45,
-            z: 0,
+            x: -0.3,
+            z: -0.5,
         },
         modelInitialPosition: {
-            y: -27,
-            x: 0,
-            z: 30,
+            y: -70,
+            x: -30,
+            z: 0,
+        },
+        modelInitialScale: {
+            x: 680,
+            y: 680,
+            z: 680,
         },
         modelMoveAnimationSettings: {
             direction: 'left',
@@ -185,8 +199,8 @@ onBeforeUnmount(() => {
             h-[420px]
             top-0
             -right-[20%]
-            md:right-0
-            translate-y-[30%];
+            translate-y-[30%]
+            md:right-0;
 
         &.is-loaded {
             @apply translate-y-0;

@@ -10,16 +10,31 @@ export class ThreeScene {
     controls = null
     orbitControlEnabled = true
     showGrid = false
-    modelInitialRotation = {
+
+    cameraPosition = {
+        x: 0,
         y: 0,
-        x: 0.45,
         z: 0,
     }
-    modelInitialPosition = {
-        y: -45,
+
+    modelInitialRotation = {
+        y: 0,
         x: 0,
-        z: 8,
+        z: 0,
     }
+
+    modelInitialPosition = {
+        y: 0,
+        x: 0,
+        z: 0,
+    }
+
+    modelInitialScale = {
+        x: 1,
+        y: 1,
+        z: 1,
+    }
+
     modelMoveAnimationSettings = {
         direction: 'left',
         axis: 'y',
@@ -30,8 +45,10 @@ export class ThreeScene {
     constructor({
         renderElem,
         filePath,
+        cameraPosition,
         modelInitialRotation,
         modelInitialPosition,
+        modelInitialScale,
         modelMoveAnimationSettings,
     }) {
         if (!renderElem) {
@@ -39,10 +56,12 @@ export class ThreeScene {
         }
         this.renderElem = renderElem
         this.filePath = filePath ?? this.filePath
+        this.cameraPosition = cameraPosition ?? this.cameraPosition
         this.modelInitialRotation = modelInitialRotation ?? this.modelInitialRotation
         this.modelInitialPosition = modelInitialPosition ?? this.modelInitialPosition
         this.modelMoveAnimationSettings =
             modelMoveAnimationSettings ?? this.modelMoveAnimationSettings
+        this.modelInitialScale = modelInitialScale ?? this.modelInitialScale
         this.init()
     }
 
@@ -79,17 +98,17 @@ export class ThreeScene {
     }
 
     setCamera() {
-        this.camera.position.x = 575.4663518546528
-        this.camera.position.y = 41.98937145997421
-        this.camera.position.z = -165.5005410484962
+        this.camera.position.x = this.cameraPosition.x
+        this.camera.position.y = this.cameraPosition.y
+        this.camera.position.z = this.cameraPosition.z
     }
 
     setLights() {
-        let light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 2)
+        let light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 5)
         light1.position.set(0, 1, 0)
         this.scene.add(light1)
 
-        let light2 = new THREE.DirectionalLight(0xffffff, 7)
+        let light2 = new THREE.DirectionalLight(0xffffff, 2)
         light2.position.set(0, 1, 0)
         this.scene.add(light2)
 
@@ -109,7 +128,7 @@ export class ThreeScene {
         this.scene = new THREE.Scene()
         // this.scene.background = new THREE.Color(0xdddddd);
         this.camera = new THREE.PerspectiveCamera(
-            11,
+            50,
             this.renderElem.offsetWidth / this.renderElem.offsetHeight,
             1,
             5000
@@ -127,8 +146,8 @@ export class ThreeScene {
         this.renderer.setSize(this.renderElem.offsetWidth, this.renderElem.offsetHeight)
         this.renderElem.appendChild(this.renderer.domElement)
 
-        this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
-        this.controls.enabled = false
+        // this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
+        // this.controls.enabled = false
         // this.controls.enableZoom = false;
         // this.controls.enablePan = false;
         // this.controls.enableRotate = false;
@@ -145,7 +164,11 @@ export class ThreeScene {
             this.model.rotation.y = this.modelInitialRotation.y
             this.model.rotation.z = this.modelInitialRotation.z
 
-            this.model.scale.set(0.1, 0.1, 0.1)
+            this.model.scale.set(
+                this.modelInitialScale.x,
+                this.modelInitialScale.y,
+                this.modelInitialScale.z
+            )
             this.scene.add(gltf.scene)
             this.animateScene()
             this.renderElem.classList.add('is-loaded')
