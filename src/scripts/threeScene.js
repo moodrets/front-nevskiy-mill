@@ -17,6 +17,12 @@ export class ThreeScene {
         z: 0,
     }
 
+    cameraPerspectiveSettings = {
+        fov: 50,
+        near: 1,
+        far: 5000,
+    }
+
     modelInitialRotation = {
         y: 0,
         x: 0,
@@ -50,6 +56,7 @@ export class ThreeScene {
         modelInitialPosition,
         modelInitialScale,
         modelMoveAnimationSettings,
+        cameraPerspectiveSettings,
     }) {
         if (!renderElem) {
             return
@@ -62,6 +69,7 @@ export class ThreeScene {
         this.modelMoveAnimationSettings =
             modelMoveAnimationSettings ?? this.modelMoveAnimationSettings
         this.modelInitialScale = modelInitialScale ?? this.modelInitialScale
+        this.cameraPerspectiveSettings = cameraPerspectiveSettings ?? this.cameraPerspectiveSettings
         this.init()
     }
 
@@ -128,10 +136,10 @@ export class ThreeScene {
         this.scene = new THREE.Scene()
         // this.scene.background = new THREE.Color(0xdddddd);
         this.camera = new THREE.PerspectiveCamera(
-            50,
+            this.cameraPerspectiveSettings.fov,
             this.renderElem.offsetWidth / this.renderElem.offsetHeight,
-            1,
-            5000
+            this.cameraPerspectiveSettings.near,
+            this.cameraPerspectiveSettings.far
         )
 
         this.setCamera()

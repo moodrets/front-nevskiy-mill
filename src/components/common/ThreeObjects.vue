@@ -60,8 +60,8 @@ function onScrollHandler(event: Event) {
                     }
                 }
 
-                mainThreeObject?.model.rotateOnAxis(threeAxisY, -deltaY * 0.0003)
-                secondaryThreeObject?.model.rotateOnAxis(threeAxisY, deltaY * 0.00035)
+                mainThreeObject?.model?.rotateOnAxis(threeAxisY, -deltaY * 0.0003)
+                secondaryThreeObject?.model?.rotateOnAxis(threeAxisY, deltaY * 0.00035)
             }
 
             ticking = false
