@@ -31,11 +31,9 @@ let lastKnownScrollPosition = 0
 let deltaY = 0
 
 // @ts-ignore
-const threeAxisZ = new THREE.Vector3(0, 0, 1).normalize()
-// @ts-ignore
 const threeAxisY = new THREE.Vector3(0, 1, 0).normalize()
 
-function onScrollHandler(event: Event) {
+function onScrollHandler() {
     let aboutBlockTop = aboutLastBlock?.getBoundingClientRect().top || 0
     let ticking = false
     let screenLG = window.matchMedia('(max-width: 1023px)').matches
@@ -43,29 +41,25 @@ function onScrollHandler(event: Event) {
     let moreThan = screenLG ? -400 : 100
 
     if (!ticking) {
-        window.requestAnimationFrame(function () {
+        requestAnimationFrame(() => {
             deltaY = window.scrollY - lastKnownScrollPosition
             lastKnownScrollPosition = window.scrollY
 
-            if (window.scrollY > 0) {
-                if (wrapperRef.value) {
-                    if (aboutBlockTop > moreThan) {
-                        wrapperRef.value.removeAttribute('style')
-                    } else {
-                        !wrapperRef.value.hasAttribute('style') &&
-                            wrapperRef.value.setAttribute(
-                                'style',
-                                `position: absolute; top: ${window.scrollY + offsetTop}px`
-                            )
+            if (window.scrollY > 0 && wrapperRef.value) {
+                if (aboutBlockTop > moreThan) {
+                    if (!wrapperRef.value.hasAttribute('style')) {
+                        wrapperRef.value.style.cssText = `position: fixed;`
                     }
+                    mainThreeObject?.model?.rotateOnAxis(threeAxisY, -deltaY * 0.0003)
+                    secondaryThreeObject?.model?.rotateOnAxis(threeAxisY, deltaY * 0.00035)
+                } else {
+                    wrapperRef.value.removeAttribute('style')
                 }
-
-                mainThreeObject?.model?.rotateOnAxis(threeAxisY, -deltaY * 0.0003)
-                secondaryThreeObject?.model?.rotateOnAxis(threeAxisY, deltaY * 0.00035)
             }
 
             ticking = false
         })
+
         ticking = true
     }
 }
@@ -101,7 +95,7 @@ onMounted(() => {
             direction: 'right',
             axis: 'y',
             value: 0.0003,
-            moreValue: [0.5, -0.5],
+            moreValue: [0.3, -0.3],
         },
     } as any)
 
@@ -132,7 +126,7 @@ onMounted(() => {
             direction: 'left',
             axis: 'y',
             value: 0.0003,
-            moreValue: [0.5, -0.5],
+            moreValue: [0.01, -0.3],
         },
     } as any)
 
@@ -154,7 +148,7 @@ onBeforeUnmount(() => {
     @apply pointer-events-none
         overflow-hidden
         h-[700px]
-        fixed
+        absolute
         -z-[1]
         top-32
         left-0

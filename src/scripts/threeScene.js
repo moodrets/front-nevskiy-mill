@@ -112,17 +112,22 @@ export class ThreeScene {
     }
 
     setLights() {
-        let light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 5)
+        let light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 4)
         light1.position.set(0, 1, 0)
-        this.scene.add(light1)
 
         let light2 = new THREE.DirectionalLight(0xffffff, 2)
-        light2.position.set(0, 1, 0)
-        this.scene.add(light2)
+        light2.position.set(-5, 1, 3)
 
-        let light3 = new THREE.DirectionalLight(0xffffff, 4)
-        light3.position.set(0, -3, 0)
+        let light3 = new THREE.DirectionalLight(0xffffff, 2)
+        light3.position.set(0, 0, 7)
+
+        let light4 = new THREE.DirectionalLight(0xffffff, 2)
+        light4.position.set(0, -3, 7)
+
+        this.scene.add(light1)
+        this.scene.add(light2)
         this.scene.add(light3)
+        this.scene.add(light4)
     }
 
     setGrid() {
