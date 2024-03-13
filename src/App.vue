@@ -1,6 +1,6 @@
 <template>
     <AppHeader />
-    <div class="relative z-[0]">
+    <div class="relative z-[0] js-sticky-wrapper">
         <ThreeObjects />
         <section
             class="flex flex-col pt-[148px] pb-10 lg:pt-[200px] xl:pb-[140px] xl:min-h-dvh"

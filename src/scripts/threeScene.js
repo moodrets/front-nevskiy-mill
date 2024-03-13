@@ -1,5 +1,11 @@
 const loader = new THREE.GLTFLoader()
 
+export function createDirectionalLight(color, intensivity, position) {
+    let light = new THREE.DirectionalLight(color, intensivity)
+    light.position.set(position.x, position.y, position.z)
+    return light
+}
+
 export class ThreeScene {
     scene = null
     camera = null
@@ -10,6 +16,7 @@ export class ThreeScene {
     controls = null
     orbitControlEnabled = true
     showGrid = false
+    lights = []
 
     cameraPosition = {
         x: 0,
@@ -57,10 +64,12 @@ export class ThreeScene {
         modelInitialScale,
         modelMoveAnimationSettings,
         cameraPerspectiveSettings,
+        lights,
     }) {
         if (!renderElem) {
             return
         }
+        this.lights = lights ?? this.lights
         this.renderElem = renderElem
         this.filePath = filePath ?? this.filePath
         this.cameraPosition = cameraPosition ?? this.cameraPosition
@@ -112,22 +121,9 @@ export class ThreeScene {
     }
 
     setLights() {
-        let light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 4)
-        light1.position.set(0, 1, 0)
-
-        let light2 = new THREE.DirectionalLight(0xffffff, 2)
-        light2.position.set(-5, 1, 3)
-
-        let light3 = new THREE.DirectionalLight(0xffffff, 2)
-        light3.position.set(0, 0, 7)
-
-        let light4 = new THREE.DirectionalLight(0xffffff, 2)
-        light4.position.set(0, -3, 7)
-
-        this.scene.add(light1)
-        this.scene.add(light2)
-        this.scene.add(light3)
-        this.scene.add(light4)
+        this.lights.forEach((light) => {
+            this.scene.add(light)
+        })
     }
 
     setGrid() {
