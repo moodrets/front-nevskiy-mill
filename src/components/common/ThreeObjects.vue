@@ -32,22 +32,25 @@ let deltaY = 0
 // @ts-ignore
 const threeAxisY = new THREE.Vector3(0, 0.5, 0).normalize()
 
-function stickify(wrapper: Element, stickyEl: Element) {
+function stickify(wrapper: HTMLElement, stickyEl: HTMLElement) {
     let wrapperRect = wrapper.getBoundingClientRect()
     let stickyRect = stickyEl.getBoundingClientRect()
     let windowHeight = window.innerHeight
+    let blockActualScrollTop = window.scrollY + stickyRect.top
 
     if (wrapperRect.bottom < windowHeight) {
-        stickyEl.classList.add('is-bottom')
         stickyEl.classList.remove('is-fixed')
+        if (!stickyEl.hasAttribute('style')) {
+            stickyEl.style.cssText = `top: ${blockActualScrollTop}px`
+        }
     } else if (wrapperRect.top < 0) {
         mainThreeObject?.model?.rotateOnAxis(threeAxisY, -deltaY * 0.00015)
         secondaryThreeObject?.model?.rotateOnAxis(threeAxisY, deltaY * 0.00015)
         stickyEl.classList.add('is-fixed')
-        stickyEl.classList.remove('is-bottom')
+        stickyEl.removeAttribute('style')
     } else if (stickyRect.top <= wrapperRect.top) {
         stickyEl.classList.remove('is-fixed')
-        stickyEl.classList.remove('is-bottom')
+        stickyEl.removeAttribute('style')
     }
 }
 
@@ -60,7 +63,7 @@ function onScrollHandler() {
             lastKnownScrollPosition = window.scrollY
 
             if (stickyContainer && wrapperRef.value) {
-                stickify(stickyContainer, wrapperRef.value)
+                stickify(stickyContainer as HTMLElement, wrapperRef.value)
             }
 
             ticking = false
