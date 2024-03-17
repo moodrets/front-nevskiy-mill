@@ -1,5 +1,5 @@
 <template>
-    <div ref="wrapperRef" class="three-objects-wrapper">
+    <div class="three-objects-wrapper js-sticky-element">
         <div class="three-object three-object--main">
             <div class="spinner opacity-50 absolute z-[5] left-1/2 top-1/2 -translate-x-1/2">
                 <div class="svg-icon w-14 h-14 animate-spin">
@@ -18,64 +18,14 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { routerPath } from '@/routes'
 import { ThreeScene, createDirectionalLight } from '@/scripts/threeScene'
 
-const wrapperRef = ref<HTMLElement | null>()
-let stickyContainer: Element | null = null
 let mainThreeObject: Record<any, any> | null = null
 let secondaryThreeObject: Record<any, any> | null = null
-let lastKnownScrollPosition = 0
-let deltaY = 0
-
-// @ts-ignore
-const threeAxisY = new THREE.Vector3(0, 0.5, 0).normalize()
-
-function stickify(wrapper: HTMLElement, stickyEl: HTMLElement) {
-    let wrapperRect = wrapper.getBoundingClientRect()
-    let stickyRect = stickyEl.getBoundingClientRect()
-    let windowHeight = window.innerHeight
-    let blockActualScrollTop = window.scrollY + stickyRect.top
-
-    if (wrapperRect.bottom < windowHeight) {
-        stickyEl.classList.remove('is-fixed')
-        if (!stickyEl.hasAttribute('style')) {
-            stickyEl.style.cssText = `top: ${blockActualScrollTop}px`
-        }
-    } else if (wrapperRect.top < 0) {
-        mainThreeObject?.model?.rotateOnAxis(threeAxisY, -deltaY * 0.00015)
-        secondaryThreeObject?.model?.rotateOnAxis(threeAxisY, deltaY * 0.00015)
-        stickyEl.classList.add('is-fixed')
-        stickyEl.removeAttribute('style')
-    } else if (stickyRect.top <= wrapperRect.top) {
-        stickyEl.classList.remove('is-fixed')
-        stickyEl.removeAttribute('style')
-    }
-}
-
-function onScrollHandler() {
-    let ticking = false
-
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            deltaY = window.scrollY - lastKnownScrollPosition
-            lastKnownScrollPosition = window.scrollY
-
-            if (stickyContainer && wrapperRef.value) {
-                stickify(stickyContainer as HTMLElement, wrapperRef.value)
-            }
-
-            ticking = false
-        })
-
-        ticking = true
-    }
-}
 
 onMounted(() => {
-    stickyContainer = document.querySelector('.js-sticky-wrapper')
-
     mainThreeObject = new ThreeScene({
         filePath: `${routerPath}models/tomato-basil.glb`,
         renderElem: document.querySelector('.three-object--main'),
@@ -156,12 +106,6 @@ onMounted(() => {
     window.mainThreeObject = mainThreeObject
     // @ts-ignore
     window.secondaryThreeObject = secondaryThreeObject
-
-    window.addEventListener('scroll', onScrollHandler)
-})
-
-onBeforeUnmount(() => {
-    window.removeEventListener('scroll', onScrollHandler)
 })
 </script>
 

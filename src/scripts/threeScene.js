@@ -6,6 +6,8 @@ export function createDirectionalLight(color, intensivity, position) {
     return light
 }
 
+export const threeAxisY = new THREE.Vector3(0, 0.5, 0).normalize()
+
 export class ThreeScene {
     scene = null
     camera = null

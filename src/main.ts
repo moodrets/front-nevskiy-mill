@@ -3,7 +3,7 @@ import 'swiper/css'
 import '@/styles/main.scss'
 
 // scripts
-import { initBlocksIntersectionObserver } from '@/scripts/initAppScroll'
+import { initBlocksIntersectionObserver, initThreeObjectsScroll } from '@/scripts/initAppScroll'
 import { initProductsSlider } from '@/scripts/initSliders'
 
 // vue imports
@@ -44,4 +44,5 @@ createApp(App)
 document.addEventListener('DOMContentLoaded', () => {
     initBlocksIntersectionObserver()
     initProductsSlider()
+    initThreeObjectsScroll()
 })
