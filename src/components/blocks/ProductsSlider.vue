@@ -1,45 +1,46 @@
 <template>
     <div class="products-slider swiper js-products-slider">
         <div class="swiper-wrapper">
-            <div
-                class="swiper-slide mr-10"
-                v-for="(slide, slideIndex) in slides"
-                :key="slideIndex"
-            >
+            <div class="swiper-slide mr-10" v-for="(slide, slideIndex) in slides" :key="slideIndex">
                 <div class="flex flex-col gap-4 md:flex-row">
                     <div class="md:w-1/2">
-                        <img :src="slide.img" alt="">
+                        <img :src="slide.img" alt="" />
                     </div>
-                    <div class="md:w-1/2">
-                        <div class="slider-controls flex gap-4 justify-end mb-8 xl:mb-12">
-                            <button
-                                type="button"
-                                class="app-button app-button--light py-0 px-3 slider-prev"
-                            >
-                                <div class="block w-14 h-8 svg-icon">
-                                    <svg><use :xlink:href="`${routerPath}svg-sprite.svg#arrow-left`"></use></svg>
-                                </div>
-                            </button>
-                            <button
-                                type="button"
-                                class="app-button app-button--light py-0 px-3 slider-next"
-                            >
-                                <div class="block w-14 h-8 svg-icon">
-                                    <svg><use :xlink:href="`${routerPath}svg-sprite.svg#arrow-right`"></use></svg>
-                                </div>
-                            </button>
+                    <div class="md:w-1/2 md:pt-24">
+                        <div class="font-bold mb-5 text-[18px] xl:text-[22px]">
+                            {{ slide.title }}
                         </div>
-                        <div class="font-bold mb-5 text-[18px] xl:text-[22px]">{{ slide.title }}</div>
-                        <div class="space-y-4 text-[12px] leading-[1.4] xl:text-[14px]" v-html="slide.text"></div>
+                        <div
+                            class="space-y-4 text-[12px] leading-[1.4] xl:text-[14px]"
+                            v-html="slide.text"
+                        ></div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div
+            class="slider-controls flex gap-4 justify-end mt-5 md:z-10 md:absolute md:top-0 md:right-0"
+        >
+            <button type="button" class="app-button app-button--light py-0 px-3 slider-prev">
+                <div class="block w-14 h-8 svg-icon">
+                    <svg>
+                        <use :xlink:href="`${routerPath}svg-sprite.svg#arrow-left`"></use>
+                    </svg>
+                </div>
+            </button>
+            <button type="button" class="app-button app-button--light py-0 px-3 slider-next">
+                <div class="block w-14 h-8 svg-icon">
+                    <svg>
+                        <use :xlink:href="`${routerPath}svg-sprite.svg#arrow-right`"></use>
+                    </svg>
+                </div>
+            </button>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { routerPath } from '@/routes';
+import { routerPath } from '@/routes'
 
 const slides = [
     {
@@ -59,7 +60,7 @@ const slides = [
                 1-го сорта, томат вяленый сушеный молотый,
                 базилик сушеный молотый, соль, вода.
             </p>
-        `
+        `,
     },
     {
         img: `${routerPath}img/product-pic.png`,
@@ -78,7 +79,7 @@ const slides = [
                 1-го сорта, томат вяленый сушеный молотый,
                 базилик сушеный молотый, соль, вода.
             </p>
-        `
+        `,
     },
     {
         img: `${routerPath}img/product-pic.png`,
@@ -97,7 +98,7 @@ const slides = [
                 1-го сорта, томат вяленый сушеный молотый,
                 базилик сушеный молотый, соль, вода.
             </p>
-        `
+        `,
     },
     {
         img: `${routerPath}img/product-pic.png`,
@@ -116,7 +117,7 @@ const slides = [
                 1-го сорта, томат вяленый сушеный молотый,
                 базилик сушеный молотый, соль, вода.
             </p>
-        `
-    }
+        `,
+    },
 ]
 </script>

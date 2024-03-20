@@ -1,16 +1,12 @@
 .products-slider {
-    @apply 
-        overflow-visible
-    ;
+    @apply overflow-visible;
 
     .swiper-slide {
-        @apply
-            opacity-0
+        @apply opacity-0
             transition-all
-            duration-300
-        ;
+            duration-300;
     }
-    
+
     .swiper-slide-active {
         @apply opacity-100;
     }
@@ -21,16 +17,9 @@
 
     .slider-prev,
     .slider-next {
-        @apply 
-            transition-all
-            duration-300
-        ;
-
-        &[class*="disabled"] {
-            @apply 
-                opacity-0
-                pointer-events-none
-            ;
+        &[class*='disabled'] {
+            @apply opacity-0
+                pointer-events-none;
         }
     }
 }

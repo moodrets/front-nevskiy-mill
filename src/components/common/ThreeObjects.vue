@@ -127,7 +127,8 @@ onMounted(() => {
         lg:top-[200px]
         lg:left-1/2
         lg:right-auto
-        lg:-translate-x-[156px];
+        lg:-translate-x-[310px]
+        xl:-translate-x-[156px];
 
     &.is-fixed {
         @apply fixed;
